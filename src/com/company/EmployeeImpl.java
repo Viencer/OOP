@@ -101,7 +101,7 @@ public class EmployeeImpl implements Employee {
         if (getManagerId() == 0) {
             return "My name is " + getName() + " and I can`t report because I`am a boss of the company";
         }
-        return "My name is " + getName() + " and I report for done my task "+ getTask().getName() +" to my boss: " + dataBase.get(getManagerId()).getName();
+        return "My name is " + getName() + " and I report for done my task "+ getTask().getName() +" to my boss: " + getDataBase().get(getManagerId()).getName();
     }
 
     public Task getTask() {

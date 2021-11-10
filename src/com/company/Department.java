@@ -47,7 +47,7 @@ public class Department extends Company {
     }
 
     public void setTaskToEmp(int empId, int taskId) {
-        for (int i = 0; i <getTasks().size(); i++) {
+        for (int i = 0; i < getTasks().size(); i++) {
             if (getTasks().get(i).getId() == taskId){
                 for (int j = 0; j < dataBase.size(); j++) {
                     if (dataBase.get(j).getId() == empId){
