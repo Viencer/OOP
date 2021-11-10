@@ -113,8 +113,8 @@ public class EmployeeImpl implements Employee {
     }
 
     public void setTask(Task task) {
-        if (getManagerId() == 0) {
-            System.out.println("My name is " + getName() + " and I can`t solve tasks because I`am a boss of the company");
+        if (getManagerId() == 0 && getPosition().equals("Employee")) {
+            System.out.println("can`t set the task");
         } else {
             this.task = task;
         }
