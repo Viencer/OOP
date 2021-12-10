@@ -25,7 +25,7 @@ public class Company implements BusinessStructure {
 
     @Override
     public void createDepartmentWithBoss(int bossId) {
-        if (getDataBase().get(bossId).getPosition().equals("DepBoss")) {
+        if (getDataBase().get(bossId).getPosition().equals(Positions.DEP_BOSS)) {
             departments.add(new Department(getEmployeeById(bossId), "Department"));
         } else {
             System.out.println("Boss of department cannot be person with position " + getDataBase().get(bossId).getPosition());

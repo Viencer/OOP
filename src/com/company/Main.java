@@ -34,6 +34,8 @@ public class Main {
         System.out.println(company.getEmployeeById(6));
         company.getEmployeeById(6).setPositionStrategy(new DowngradeStrategy());
         company.getEmployeeById(6).changePosition();
+        System.out.println(company.getEmployeeById(6));
+        company.getEmployeeById(6).changePosition();
         company.getEmployeeById(1).setPositionStrategy(new DowngradeStrategy());
         company.getEmployeeById(1).changePosition();
 
