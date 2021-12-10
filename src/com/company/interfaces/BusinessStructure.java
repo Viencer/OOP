@@ -1,4 +1,7 @@
-package com.company;
+package com.company.interfaces;
+
+import com.company.Department;
+import com.company.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +15,11 @@ public interface BusinessStructure {
 
     void getHierarchyOfCompany();
 
-    Employee getBoss();
+    Human getBoss();
 
-    Employee getEmployeeById(int id);
+    Human getEmployeeById(int id);
 
-    Map<Integer, Employee> getDataBase();
+    Map<Integer, Human> getDataBase();
 
     List<Task> getTasks();
 

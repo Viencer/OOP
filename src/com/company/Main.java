@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.strategy.DowngradeStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,14 +28,23 @@ public class Main {
         company.createDepartmentWithBoss(2);
         company.createDepartmentWithBoss(3);
         company.createDepartmentWithBoss(4);
-        for (int i = 1; i < company.getDepartments().size() + 1; i++) {
-            for (int j = 0; j < company.getDepartments().get(i - 1).getListOfEmp().size(); j++) {
-                tasks.add(new Task(i, "task"));
-            }
-        }
 
-        System.out.println(company.getEmployeeById(1).getSubordinates());
-        company.getHierarchyOfCompany();
+        System.out.println(company.getEmployeeById(6));
+        company.getEmployeeById(6).changePosition();
+        System.out.println(company.getEmployeeById(6));
+        company.getEmployeeById(6).setPositionStrategy(new DowngradeStrategy());
+        company.getEmployeeById(6).changePosition();
+        company.getEmployeeById(1).setPositionStrategy(new DowngradeStrategy());
+        company.getEmployeeById(1).changePosition();
+//        for (int i = 1; i < company.getDepartments().size() + 1; i++) {
+//            for (int j = 0; j < company.getDepartments().get(i - 1).getListOfEmp().size(); j++) {
+//                tasks.add(new Task(i, "task"));
+//            }
+//        }
+
+
+//        System.out.println(company.getEmployeeById(1).getSubordinates());
+//        company.getHierarchyOfCompany();
 
     }
 }

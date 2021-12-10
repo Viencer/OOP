@@ -1,48 +1,53 @@
 package com.company;
 
 
+import com.company.interfaces.Human;
+import com.company.interfaces.PositionStrategy;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EmployeeImpl implements Employee {
+public abstract class HumanImpl implements Human {
 
     private Task task;
     private int id;
     private int managerId;
     private String name;
     private String position;
-    private List<Employee> subordinates;
-    private Map<Integer, Employee> dataBase = new HashMap<Integer, Employee>();
+    private List<Human> subordinates;
+    private Map<Integer, Human> dataBase = new HashMap<Integer, Human>();
+    protected PositionStrategy positionStrategy;
 
-    public EmployeeImpl(int id, String name, int managerId, String position) {
+
+    public HumanImpl(int id, String name, int managerId, String position) {
         this.id = id;
         this.managerId = managerId;
         this.name = name;
         this.position = position;
     }
 
-    public EmployeeImpl() {
+    public HumanImpl() {
     }
 
     @Override
-    public void buildHierarchyTree(Employee emp) {
-        Employee employee = emp;
-        List<Employee> subs = getSubsById(employee.getId());
-        employee.setSubordinates(subs);
+    public void buildHierarchyTree(Human emp) {
+        Human human = emp;
+        List<Human> subs = getSubsById(human.getId());
+        human.setSubordinates(subs);
         if (subs.size() == 0) {
             return;
         }
-        for (Employee em : subs) {
+        for (Human em : subs) {
             buildHierarchyTree(em);
         }
     }
 
     @Override
-    public List<Employee> getSubsById(int managerId) {
-        List<Employee> subs = new ArrayList<Employee>();
-        for (Employee em : dataBase.values()) {
+    public List<Human> getSubsById(int managerId) {
+        List<Human> subs = new ArrayList<Human>();
+        for (Human em : dataBase.values()) {
             if (em.getManagerId() == managerId) {
                 subs.add(em);
             }
@@ -52,9 +57,6 @@ public class EmployeeImpl implements Employee {
 
     @Override
     public String getBoss() {
-        if (dataBase.get(getId()).getManagerId() == 0) {
-            return "I don`t have boss because I`am boss of the company";
-        }
         return "Boss of employee " + dataBase.get(getId()).getName() + " is " + dataBase.get(getManagerId()).getName();
     }
 
@@ -74,22 +76,22 @@ public class EmployeeImpl implements Employee {
     }
 
     @Override
-    public List<Employee> getSubordinates() {
+    public List<Human> getSubordinates() {
         return subordinates;
     }
 
     @Override
-    public void setSubordinates(List<Employee> subordinates) {
+    public void setSubordinates(List<Human> subordinates) {
         this.subordinates = subordinates;
     }
 
     @Override
-    public Map<Integer, Employee> getDataBase() {
+    public Map<Integer, Human> getDataBase() {
         return dataBase;
     }
 
     @Override
-    public void setDataBase(Map<Integer, Employee> dataBase) {
+    public void setDataBase(Map<Integer, Human> dataBase) {
         this.dataBase = dataBase;
         buildHierarchyTree(dataBase.get(id));
     }
@@ -97,6 +99,16 @@ public class EmployeeImpl implements Employee {
     @Override
     public String getPosition() {
         return position;
+    }
+
+    @Override
+    public void changePosition() {
+        this.position = positionStrategy.setPosition();
+    }
+
+    @Override
+    public void setPositionStrategy(PositionStrategy positionStrategy) {
+        this.positionStrategy = positionStrategy;
     }
 
     @Override
@@ -121,7 +133,6 @@ public class EmployeeImpl implements Employee {
         } else {
             this.task = task;
         }
-
     }
 
     public void setManagerId(int managerId) {

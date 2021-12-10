@@ -1,37 +1,18 @@
 package com.company;
 
+import com.company.interfaces.Human;
+import com.company.strategy.DowngradeStrategy;
+import com.company.strategy.UpgradeStrategy;
+
 import java.util.List;
-import java.util.Map;
 
-public interface Employee {
+public class Employee extends HumanImpl {
 
-    void buildHierarchyTree(Employee emp);
+    public Employee(int id, String name, int managerId, String position) {
+        super(id, name, managerId, position);
+        this.positionStrategy = new UpgradeStrategy();
+    }
 
-    List<Employee> getSubsById(int managerId);
-
-    String getBoss();
-
-    int getId();
-
-    int getManagerId();
-
-    String getName();
-
-    List<Employee> getSubordinates();
-
-    void setSubordinates(List<Employee> subordinates);
-
-    Map<Integer, Employee> getDataBase();
-
-    void setDataBase(Map<Integer, Employee> dataBase);
-
-    String getPosition();
-
-    String report();
-
-    void setTask(Task task);
-
-    Task getTask();
-
-    void setManagerId(int managerId);
+    public Employee() {
+    }
 }

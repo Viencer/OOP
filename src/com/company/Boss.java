@@ -1,6 +1,8 @@
 package com.company;
 
-public class Boss extends EmployeeImpl {
+import com.company.interfaces.PositionStrategy;
+
+public class Boss extends HumanImpl {
 
     private static Boss instance;
 
@@ -15,7 +17,36 @@ public class Boss extends EmployeeImpl {
         super(id, name, managerId, position);
     }
 
-    private Boss () {
+    private Boss() {
         super();
+    }
+
+    @Override
+    public String getBoss() {
+        return "I don`t have boss because I`am boss of the company";
+    }
+
+    @Override
+    public String report() {
+        return "My name is " + getName() + " and I can`t report because I`am a boss of the company";
+    }
+
+    public Task getTask() {
+        return null;
+    }
+    public void setTask(Task task) {
+    }
+
+    public void setManagerId(int managerId) {
+    }
+
+    @Override
+    public void changePosition() {
+        System.out.println("can`t change boss position");
+    }
+
+    @Override
+    public void setPositionStrategy(PositionStrategy positionStrategy) {
+        System.out.println("can`t set boss strategy");
     }
 }

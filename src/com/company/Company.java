@@ -1,5 +1,8 @@
 package com.company;
 
+import com.company.interfaces.BusinessStructure;
+import com.company.interfaces.Human;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,9 +11,9 @@ import java.util.Map;
 public class Company implements BusinessStructure {
 
     private ArrayList<Department> departments = new ArrayList<Department>();
-    private Map<Integer, Employee> dataBase = new HashMap<Integer, Employee>();
+    private Map<Integer, Human> dataBase = new HashMap<Integer, Human>();
     private List<Task> tasks = new ArrayList<Task>();
-    private Employee boss;
+    private Human boss;
 
     public Company(String[] data) {
         createDataBase(data);
@@ -30,16 +33,19 @@ public class Company implements BusinessStructure {
 
     @Override
     public void createDataBase(String[] data) {
-        Employee employee = null;
+        Human human = null;
         for (String strLine : data) {
             String[] values = strLine.split(" ");
-            if (values.length >= 5)
-                employee = new EmployeeImpl(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt(values[3]), values[4]);
-            else
-                employee = Boss.getInstance(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt("0"), values[3]);
-            dataBase.put(employee.getId(), employee);
-            if (employee.getManagerId() == 0)
-                boss = employee;
+            if (values.length >= 5) {
+                if (values[4].equals("DepBoss")) {
+                    human = new DepBoss(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt(values[3]), values[4]);
+                } else if (values[4].equals("Employee"))
+                    human = new Employee(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt(values[3]), values[4]);
+            } else
+                human = Boss.getInstance(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt("0"), values[3]);
+            dataBase.put(human.getId(), human);
+            if (human.getManagerId() == 0)
+                boss = human;
         }
     }
 
@@ -48,31 +54,31 @@ public class Company implements BusinessStructure {
         hierarchyOfCompany(getBoss(), 0);
     }
 
-    private void hierarchyOfCompany(Employee emp, int level) {
+    private void hierarchyOfCompany(Human emp, int level) {
         for (int i = 0; i < level; i++) {
             System.out.print("\t");
         }
         System.out.println(emp.getName());
-        List<Employee> subs = emp.getSubordinates();
-        for (Employee em : subs) {
+        List<Human> subs = emp.getSubordinates();
+        for (Human em : subs) {
             hierarchyOfCompany(em, level + 1);
         }
     }
 
     @Override
-    public Employee getBoss() {
+    public Human getBoss() {
         dataBase.get(boss.getId()).setDataBase(dataBase);
         return boss;
     }
 
     @Override
-    public Employee getEmployeeById(int id) {
+    public Human getEmployeeById(int id) {
         dataBase.get(id).setDataBase(dataBase);
         return dataBase.get(id);
     }
 
     @Override
-    public Map<Integer, Employee> getDataBase() {
+    public Map<Integer, Human> getDataBase() {
         return dataBase;
     }
 

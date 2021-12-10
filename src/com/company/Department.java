@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.interfaces.Human;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +11,10 @@ public class Department extends Company {
     private  int id;
     private int bossId;
     private String name;
-    private Employee boss;
-    private List<Employee> dataBase = new ArrayList<Employee>();
+    private Human boss;
+    private List<Human> dataBase = new ArrayList<Human>();
 
-    public Department(Employee boss, String name) {
+    public Department(Human boss, String name) {
         this.id = count++;
         this.boss = boss;
         this.bossId = boss.getId();
@@ -24,7 +26,7 @@ public class Department extends Company {
     public Department() {
     }
 
-    public List<Employee> getListOfEmp() {
+    public List<Human> getListOfEmp() {
         return dataBase;
     }
 

@@ -1,0 +1,43 @@
+package com.company.interfaces;
+
+import com.company.Task;
+
+import java.util.List;
+import java.util.Map;
+
+public interface Human {
+
+    void buildHierarchyTree(Human emp);
+
+    List<Human> getSubsById(int managerId);
+
+    String getBoss();
+
+    int getId();
+
+    int getManagerId();
+
+    String getName();
+
+    List<Human> getSubordinates();
+
+    void setSubordinates(List<Human> subordinates);
+
+    Map<Integer, Human> getDataBase();
+
+    void setDataBase(Map<Integer, Human> dataBase);
+
+    String getPosition();
+
+    String report();
+
+    void setTask(Task task);
+
+    Task getTask();
+
+    void setManagerId(int managerId);
+
+    void changePosition();
+
+    void setPositionStrategy(PositionStrategy positionStrategy);
+}
