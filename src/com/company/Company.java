@@ -36,7 +36,7 @@ public class Company implements BusinessStructure {
             if (values.length >= 5)
                 employee = new EmployeeImpl(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt(values[3]), values[4]);
             else
-                employee = new EmployeeImpl(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt("0"), values[3]);
+                employee = Boss.getInstance(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt("0"), values[3]);
             dataBase.put(employee.getId(), employee);
             if (employee.getManagerId() == 0)
                 boss = employee;

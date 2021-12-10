@@ -9,10 +9,10 @@ import java.util.Map;
 public class EmployeeImpl implements Employee {
 
     private Task task;
-    private final int id;
+    private int id;
     private int managerId;
-    private final String name;
-    private final String position;
+    private String name;
+    private String position;
     private List<Employee> subordinates;
     private Map<Integer, Employee> dataBase = new HashMap<Integer, Employee>();
 
@@ -21,6 +21,9 @@ public class EmployeeImpl implements Employee {
         this.managerId = managerId;
         this.name = name;
         this.position = position;
+    }
+
+    public EmployeeImpl() {
     }
 
     @Override
@@ -101,7 +104,7 @@ public class EmployeeImpl implements Employee {
         if (getManagerId() == 0) {
             return "My name is " + getName() + " and I can`t report because I`am a boss of the company";
         }
-        return "My name is " + getName() + " and I report for done my task "+ getTask().getName() +" to my boss: " + getDataBase().get(getManagerId()).getName();
+        return "My name is " + getName() + " and I report for done my task " + getTask().getName() + " to my boss: " + getDataBase().get(getManagerId()).getName();
     }
 
     public Task getTask() {
@@ -125,10 +128,10 @@ public class EmployeeImpl implements Employee {
         this.managerId = managerId;
     }
 
-    public void addSubordinates(int idOfEmp){
-        if (!getPosition().equals("Employee")){
+    public void addSubordinates(int idOfEmp) {
+        if (!getPosition().equals("Employee")) {
             for (int i = 0; i < dataBase.size(); i++) {
-                if (dataBase.get(i).getId() == idOfEmp && !dataBase.get(i).getPosition().equals("Boss")){
+                if (dataBase.get(i).getId() == idOfEmp && !dataBase.get(i).getPosition().equals("Boss")) {
                     subordinates.add(dataBase.get(i));
                     dataBase.get(i).setManagerId(getId());
                 }

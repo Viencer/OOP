@@ -23,7 +23,6 @@ public class Main {
         List<Task> tasks = new ArrayList<Task>();
         Company company = new Company(data);
 
-        //System.out.println(company.getEmployeeById(2));
         company.createDepartmentWithBoss(2);
         company.createDepartmentWithBoss(3);
         company.createDepartmentWithBoss(4);
@@ -32,11 +31,9 @@ public class Main {
                 tasks.add(new Task(i, "task"));
             }
         }
-        company.setTasks(tasks);
-        company.getDepartments().get(0).setTasks(tasks);
-        System.out.println(company.getDepartments().get(0).getListOfEmp());
-        company.getDepartments().get(0).setTaskToEmp(5, 1);
-        System.out.println(company.getDepartments().get(0).getTasks());
-        System.out.println(company.getEmployeeById(5).report());
+
+        System.out.println(company.getEmployeeById(1).getSubordinates());
+        company.getHierarchyOfCompany();
+
     }
 }
