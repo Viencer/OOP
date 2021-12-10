@@ -1,6 +1,7 @@
 package com.company.interfaces;
 
 import com.company.Task;
+import com.company.enums.Positions;
 
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,7 @@ public interface Human {
 
     void setDataBase(Map<Integer, Human> dataBase);
 
-    String getPosition();
+    Positions getPosition();
 
     String report();
 

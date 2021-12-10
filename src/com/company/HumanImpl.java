@@ -1,6 +1,7 @@
 package com.company;
 
 
+import com.company.enums.Positions;
 import com.company.interfaces.Human;
 import com.company.interfaces.PositionStrategy;
 
@@ -15,13 +16,13 @@ public abstract class HumanImpl implements Human {
     private int id;
     private int managerId;
     private String name;
-    private String position;
+    private Positions position;
     private List<Human> subordinates;
     private Map<Integer, Human> dataBase = new HashMap<Integer, Human>();
     protected PositionStrategy positionStrategy;
 
 
-    public HumanImpl(int id, String name, int managerId, String position) {
+    public HumanImpl(int id, String name, int managerId, Positions position) {
         this.id = id;
         this.managerId = managerId;
         this.name = name;
@@ -97,7 +98,7 @@ public abstract class HumanImpl implements Human {
     }
 
     @Override
-    public String getPosition() {
+    public Positions getPosition() {
         return position;
     }
 

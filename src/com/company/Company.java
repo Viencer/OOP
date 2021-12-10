@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.enums.Positions;
 import com.company.interfaces.BusinessStructure;
 import com.company.interfaces.Human;
 
@@ -38,11 +39,11 @@ public class Company implements BusinessStructure {
             String[] values = strLine.split(" ");
             if (values.length >= 5) {
                 if (values[4].equals("DepBoss")) {
-                    human = new DepBoss(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt(values[3]), values[4]);
+                    human = new DepBoss(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt(values[3]), Positions.DEP_BOSS);
                 } else if (values[4].equals("Employee"))
-                    human = new Employee(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt(values[3]), values[4]);
+                    human = new Employee(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt(values[3]), Positions.EMPLOYEE);
             } else
-                human = Boss.getInstance(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt("0"), values[3]);
+                human = Boss.getInstance(Integer.parseInt(values[0]), values[1] + " " + values[2], Integer.parseInt("0"), Positions.BOSS);
             dataBase.put(human.getId(), human);
             if (human.getManagerId() == 0)
                 boss = human;

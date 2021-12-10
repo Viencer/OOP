@@ -1,5 +1,7 @@
 package com.company.interfaces;
 
+import com.company.enums.Positions;
+
 public interface PositionStrategy {
-    public String setPosition();
+    public Positions setPosition();
 }

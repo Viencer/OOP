@@ -1,19 +1,20 @@
 package com.company;
 
+import com.company.enums.Positions;
 import com.company.interfaces.PositionStrategy;
 
 public class Boss extends HumanImpl {
 
     private static Boss instance;
 
-    public static synchronized Boss getInstance(int id, String name, int managerId, String position) {
+    public static synchronized Boss getInstance(int id, String name, int managerId, Positions position) {
         if (instance == null) {
             instance = new Boss(id, name, managerId, position);
         }
         return instance;
     }
 
-    private Boss(int id, String name, int managerId, String position) {
+    private Boss(int id, String name, int managerId, Positions position) {
         super(id, name, managerId, position);
     }
 
