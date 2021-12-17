@@ -1,5 +1,6 @@
-package com.company;
+package com.company.employees;
 
+import com.company.pojo.Task;
 import com.company.enums.Positions;
 import com.company.interfaces.PositionStrategy;
 
@@ -35,6 +36,7 @@ public class Boss extends HumanImpl {
     public Task getTask() {
         return null;
     }
+
     public void setTask(Task task) {
     }
 

@@ -1,15 +1,13 @@
 package com.company.interfaces;
 
-import com.company.Department;
-import com.company.Task;
+import com.company.company_structure.Department;
+import com.company.pojo.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public interface BusinessStructure {
-
-    void createDepartmentWithBoss(int bossId);
 
     void createDataBase(String[] data);
 
@@ -27,5 +25,6 @@ public interface BusinessStructure {
 
     void setTasks(List<Task> tasks);
 
-    ArrayList<Department> getDepartments();
+    Map<Integer, Department> getDepartments();
+
 }

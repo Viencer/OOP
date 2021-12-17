@@ -1,11 +1,8 @@
-package com.company;
+package com.company.employees;
 
+import com.company.employees.HumanImpl;
 import com.company.enums.Positions;
-import com.company.interfaces.Human;
-import com.company.strategy.DowngradeStrategy;
 import com.company.strategy.UpgradeStrategy;
-
-import java.util.List;
 
 public class Employee extends HumanImpl {
 

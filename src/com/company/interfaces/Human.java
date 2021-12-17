@@ -1,6 +1,7 @@
 package com.company.interfaces;
 
-import com.company.Task;
+import com.company.enums.Projects;
+import com.company.pojo.Task;
 import com.company.enums.Positions;
 
 import java.util.List;
@@ -41,4 +42,6 @@ public interface Human {
     void changePosition();
 
     void setPositionStrategy(PositionStrategy positionStrategy);
+
+    void updateProject(Projects project);
 }

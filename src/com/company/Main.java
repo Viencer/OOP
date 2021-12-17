@@ -1,9 +1,7 @@
 package com.company;
 
-import com.company.strategy.DowngradeStrategy;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.company.company_structure.Company;
+import com.company.enums.Projects;
 
 public class Main {
 
@@ -22,22 +20,21 @@ public class Main {
                 "11 Tom Fox 4 Employee"
         };
 
-        List<Task> tasks = new ArrayList<Task>();
+        String[] departments = {
+                "1 Department_1 2 PROJECT_1",
+                "2 Department_2 3 PROJECT_2",
+                "3 Department_3 4 PROJECT_3",
+        };
+
         Company company = new Company(data);
 
-        company.createDepartmentWithBoss(2);
-        company.createDepartmentWithBoss(3);
-        company.createDepartmentWithBoss(4);
+        company.createDepartments(departments);
 
-        System.out.println(company.getEmployeeById(6));
-        company.getEmployeeById(6).changePosition();
-        System.out.println(company.getEmployeeById(6));
-        company.getEmployeeById(6).setPositionStrategy(new DowngradeStrategy());
-        company.getEmployeeById(6).changePosition();
-        System.out.println(company.getEmployeeById(6));
-        company.getEmployeeById(6).changePosition();
-        company.getEmployeeById(1).setPositionStrategy(new DowngradeStrategy());
-        company.getEmployeeById(1).changePosition();
+        System.out.println("\n");
+        company.getDepartmentById(2).setProject(Projects.PROJECT_4);
+        System.out.println("\n");
+        company.getDepartmentById(2).addEmployee(company.getEmployeeById(9));
+        System.out.println(company.getEmployeeById(9));
 
     }
 }

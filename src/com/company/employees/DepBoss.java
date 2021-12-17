@@ -1,5 +1,6 @@
-package com.company;
+package com.company.employees;
 
+import com.company.employees.HumanImpl;
 import com.company.enums.Positions;
 import com.company.strategy.DowngradeStrategy;
 

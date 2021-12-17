@@ -1,5 +1,10 @@
-package com.company;
+package com.company.company_structure;
 
+import com.company.enums.Projects;
+import com.company.pojo.Task;
+import com.company.employees.Boss;
+import com.company.employees.DepBoss;
+import com.company.employees.Employee;
 import com.company.enums.Positions;
 import com.company.interfaces.BusinessStructure;
 import com.company.interfaces.Human;
@@ -11,8 +16,8 @@ import java.util.Map;
 
 public class Company implements BusinessStructure {
 
-    private ArrayList<Department> departments = new ArrayList<Department>();
     private Map<Integer, Human> dataBase = new HashMap<Integer, Human>();
+    private Map<Integer, Department> departments = new HashMap<Integer, Department>();
     private List<Task> tasks = new ArrayList<Task>();
     private Human boss;
 
@@ -23,12 +28,19 @@ public class Company implements BusinessStructure {
     public Company() {
     }
 
-    @Override
-    public void createDepartmentWithBoss(int bossId) {
-        if (getDataBase().get(bossId).getPosition().equals(Positions.DEP_BOSS)) {
-            departments.add(new Department(getEmployeeById(bossId), "Department"));
-        } else {
-            System.out.println("Boss of department cannot be person with position " + getDataBase().get(bossId).getPosition());
+    public void createDepartment(int id, int bossId, String name, Projects project) {
+        Department department = new Department(id, getEmployeeById(bossId),
+                name, project, getEmployeeById(bossId).getSubordinates());
+            departments.put(id, department);
+    }
+
+    public void createDepartments(String[] data) {
+        Department department = null;
+        for (String strLine : data) {
+            String[] values = strLine.split(" ");
+            department = new Department(Integer.parseInt(values[0]), getEmployeeById(Integer.parseInt(values[2])),
+                    values[1], Projects.valueOf(values[3]), getEmployeeById(Integer.parseInt(values[2])).getSubordinates());
+            departments.put(Integer.parseInt(values[0]), department);
         }
     }
 
@@ -68,7 +80,6 @@ public class Company implements BusinessStructure {
 
     @Override
     public Human getBoss() {
-        dataBase.get(boss.getId()).setDataBase(dataBase);
         return boss;
     }
 
@@ -102,7 +113,12 @@ public class Company implements BusinessStructure {
     }
 
     @Override
-    public ArrayList<Department> getDepartments() {
+    public Map<Integer, Department> getDepartments() {
         return departments;
     }
+
+    public Department getDepartmentById(int id) {
+        return departments.get(id);
+    }
+
 }

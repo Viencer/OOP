@@ -1,6 +1,9 @@
-package com.company;
+package com.company.employees;
 
 
+import com.company.company_structure.Department;
+import com.company.enums.Projects;
+import com.company.pojo.Task;
 import com.company.enums.Positions;
 import com.company.interfaces.Human;
 import com.company.interfaces.PositionStrategy;
@@ -20,9 +23,17 @@ public abstract class HumanImpl implements Human {
     private List<Human> subordinates;
     private Map<Integer, Human> dataBase = new HashMap<Integer, Human>();
     protected PositionStrategy positionStrategy;
+    protected Projects project;
 
 
     public HumanImpl(int id, String name, int managerId, Positions position) {
+        this.id = id;
+        this.managerId = managerId;
+        this.name = name;
+        this.position = position;
+    }
+
+    public HumanImpl(int id, String name, int managerId, Positions position, Department department) {
         this.id = id;
         this.managerId = managerId;
         this.name = name;
@@ -152,12 +163,19 @@ public abstract class HumanImpl implements Human {
     }
 
     @Override
+    public void updateProject(Projects project) {
+        this.project = project;
+        System.out.println(" Now employee " + this.name +" works on " + project);
+    }
+
+    @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
                 ", managerId=" + managerId +
                 ", name='" + name + '\'' +
                 ", position='" + position + '\'' +
+                ", project='" + project + '\'' +
                 '}';
     }
 }
