@@ -64,6 +64,7 @@ public class Company implements BusinessStructure {
 
     @Override
     public void getHierarchyOfCompany() {
+        dataBase.get(1).setDataBase(dataBase);
         hierarchyOfCompany(getBoss(), 0);
     }
 
