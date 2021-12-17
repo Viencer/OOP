@@ -29,7 +29,6 @@ public class Receiver {
 
     public void changeDepBoss(int id, int option) {
         company.getDepartmentById(id).changeBoss(company.getEmployeeById(option));
-        System.out.println(company.getDepartmentById(id));
     }
 
 }

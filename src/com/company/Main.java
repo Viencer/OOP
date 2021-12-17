@@ -108,6 +108,7 @@ public class Main {
                 "2-->Change department project by department id\n" +
                 "3-->Change department boss by department id\n" +
                 "4-->Command help\n" +
+                "5-->Exit\n" +
                 "");
     }
 }
