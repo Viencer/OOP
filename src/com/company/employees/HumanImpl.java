@@ -162,6 +162,10 @@ public abstract class HumanImpl implements Human {
         }
     }
 
+    public void updateProjectSilent(Projects project) {
+        this.project = project;
+    }
+
     @Override
     public void updateProject(Projects project) {
         this.project = project;

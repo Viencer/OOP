@@ -24,7 +24,7 @@ public class Department extends Company implements ProjectObserver {
         this.project = project;
         this.departmentDataBase = dataBase;
         this.departmentDataBase.add(boss);
-        notifyEmployees();
+        notifyEmployeesSilent();
     }
 
     public Department() {
@@ -77,6 +77,13 @@ public class Department extends Company implements ProjectObserver {
         notifyEmployees();
     }
 
+    public void notifyEmployeesSilent() {
+        for (Human emp : departmentDataBase) {
+            emp.updateProjectSilent(this.project);
+        }
+    }
+
+
     @Override
     public void notifyEmployees() {
         for (Human emp : departmentDataBase) {
@@ -91,6 +98,13 @@ public class Department extends Company implements ProjectObserver {
 
     public List<Human> getDataBased() {
         return this.departmentDataBase;
+    }
+
+    public void changeBoss(Human boss) {
+        this.boss = boss;
+        this.departmentDataBase = boss.getSubordinates();
+        departmentDataBase.add(boss);
+        notifyEmployees();
     }
 
     @Override

@@ -44,4 +44,6 @@ public interface Human {
     void setPositionStrategy(PositionStrategy positionStrategy);
 
     void updateProject(Projects project);
+
+    void updateProjectSilent(Projects project);
 }
