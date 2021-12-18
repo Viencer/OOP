@@ -1,4 +1,4 @@
-package com.company.interfaces;
+package com.company.strategy;
 
 import com.company.enums.Positions;
 

@@ -1,9 +1,6 @@
 package com.company;
 
-import com.company.command.*;
 import com.company.company_structure.Company;
-import com.company.enums.Projects;
-import com.company.interfaces.Command;
 
 import java.io.BufferedReader;
 import java.io.IOException;

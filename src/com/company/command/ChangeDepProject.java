@@ -1,7 +1,5 @@
 package com.company.command;
 
-import com.company.interfaces.Command;
-
 public class ChangeDepProject implements Command {
 
     private Receiver receiver;

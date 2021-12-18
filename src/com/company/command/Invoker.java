@@ -1,7 +1,5 @@
 package com.company.command;
 
-import com.company.interfaces.Command;
-
 public class Invoker {
 
     private Command getSubordinates;

@@ -2,7 +2,7 @@ package com.company.employees;
 
 import com.company.pojo.Task;
 import com.company.enums.Positions;
-import com.company.interfaces.PositionStrategy;
+import com.company.strategy.PositionStrategy;
 
 public class Boss extends HumanImpl {
 

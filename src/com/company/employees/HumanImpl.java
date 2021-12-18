@@ -6,7 +6,7 @@ import com.company.enums.Projects;
 import com.company.pojo.Task;
 import com.company.enums.Positions;
 import com.company.interfaces.Human;
-import com.company.interfaces.PositionStrategy;
+import com.company.strategy.PositionStrategy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
